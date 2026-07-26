@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Payment Portal</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.container{
+width:420px;
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+h2{
+text-align:center;
+color:#0057d9;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+color:#666;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.row{
+display:flex;
+gap:10px;
+}
+
+.row div{
+flex:1;
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:14px;
+background:#0057d9;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0045aa;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:13px;
+color:#777;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🔒 Secure Payment Portal</h2>
+
+<p>Safe • Fast • Encrypted Payments</p>
+
+<form action="/pay" method="POST">
+
+<label>Cardholder Name</label>
+<input
+    type="text"
+    name="cardholder"
+    placeholder="David Johnson"
+    required
+>
+
+<label>Card Number</label>
+<input
+    type="text"
+    name="cardNumber"
+    placeholder="4111 1111 1111 1111"
+    maxlength="19"
+    required
+>
+
+<div class="row">
+
+<div>
+<label>Expiry Date</label>
+<input
+    type="text"
+    name="expiry"
+    placeholder="MM/YY"
+    maxlength="5"
+    required
+>
+</div>
+
+<div>
+<label>CVV</label>
+<input
+    type="password"
+    name="cvv"
+    placeholder="123"
+    maxlength="4"
+    required
+>
+</div>
+
+</div>
+
+<label>Amount ($)</label>
+<input
+    type="number"
+    name="amount"
+    placeholder="100"
+    required
+>
+
+<label>MCC</label>
+
+<select name="mcc" required>
+<option>Office Supply</option>
+<option>Electronics</option>
+<option>Travel</option>
+<option>Retail</option>
+<option>Digital Services</option>
+</select>
+
+<label>Email</label>
+<input
+    type="email"
+    name="email"
+    placeholder="customer@example.com"
+    required
+>
+
+<button type="submit" id="payBtn">
+🔒 Pay Securely
+</button>
+
+<p style="text-align:center;color:#666;font-size:13px;margin-top:15px;">
+🔐 256-bit SSL Encrypted • PCI DSS Compliant
+</p>
+
+</form>
+
+<div class="footer">
+Visa • Mastercard • Apple Pay • Google Pay
+</div>
+
+</div>
+<script>
+const form = document.querySelector("form");
+const payBtn = document.getElementById("payBtn");
+
+const cardInput = document.querySelector('input[name="cardNumber"]');
+const expiryInput = document.querySelector('input[name="expiry"]');
+
+// Format card number
+cardInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    value = value.substring(0, 16);
+    value = value.replace(/(.{4})/g, "$1 ").trim();
+    e.target.value = value;
+});
+
+// Format expiry date
+expiryInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 2) {
+        value = value.substring(0, 2) + "/" + value.substring(2, 4);
+    }
+    e.target.value = value;
+});
+
+// Loading button
+form.addEventListener("submit", function () {
+    payBtn.disabled = true;
+    payBtn.innerHTML = "⏳ Processing Payment...";
+});
+</script>
+
+</body>
+</html>
