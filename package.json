@@ -1,23 +1,15 @@
 {
-  "name": "pay",
+  "name": "payment-mvp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Payment Gateway MVP",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jkyru/pay.git"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Opeyemi",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/jkyru/pay/issues"
-  },
-  "homepage": "https://github.com/jkyru/pay#readme",
   "dependencies": {
     "express": "^5.2.1",
     "sqlite3": "^6.0.1"
